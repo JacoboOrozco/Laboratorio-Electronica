@@ -1,0 +1,87 @@
+-- Code your testbench here
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_ARITH.all;
+use IEEE.std_logic_unsigned.all;
+
+entity Simula_and is
+-- 
+end Simula_and;
+
+
+architecture Comp_Sim_And of Simula_and is
+
+component Gate_And 
+	Port( 
+    		a: in STD_LOGIC;
+            b: in STD_LOGIC;
+            c: in STD_LOGIC;--a,b,c : in STD_LOGIC;
+			f: out STD_LOGIC --(; NO VA)
+		);
+end component;
+
+-- Señales de las entradas
+signal a_s : STD_LOGIC:= '0';
+signal b_s : STD_LOGIC:= '0';
+signal c_s : STD_LOGIC:= '0';
+
+
+
+-- Señales de salidas
+signal f_s : STD_LOGIC;
+
+begin
+UO: Gate_And Port map	(
+						a => a_s,
+						b => b_s,
+                        c => c_s,
+						f => f_s
+						);
+        
+process begin
+--- Estímulos de la simulación wait for 100 ns;
+  	wait for 100 ns;
+
+    a_s <= '0'; 
+    b_s <= '0'; 
+    c_s <= '0'; 
+    wait for 100 ns;
+    
+    a_s <= '0'; 
+    b_s <= '0'; 
+    c_s <= '1'; 
+    wait for 100 ns;
+    
+    a_s <= '0'; 
+    b_s <= '1'; 
+    c_s <= '0'; 
+    wait for 100 ns;
+    
+    a_s <= '0'; 
+    b_s <= '1'; 
+    c_s <= '1'; 
+    wait for 100 ns;
+    
+    a_s <= '1'; 
+    b_s <= '0'; 
+    c_s <= '0'; 
+    wait for 100 ns;
+
+    a_s <= '1'; 
+    b_s <= '0'; 
+    c_s <= '1'; 
+    wait for 100 ns;
+    
+    a_s <= '1'; 
+    b_s <= '1'; 
+    c_s <= '0'; 
+    wait for 100 ns;
+    
+    a_s <= '1'; 
+    b_s <= '1'; 
+    c_s <= '1'; 
+    wait for 100 ns;
+
+    wait;
+end process;
+end Comp_Sim_And;
